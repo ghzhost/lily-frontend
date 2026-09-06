@@ -97,6 +97,7 @@ npm run test:e2e
 npm run build
 npm run check
 npm run format
+npm run icons
 npm run clean
 npm run icons
 ```

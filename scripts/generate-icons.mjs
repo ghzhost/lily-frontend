@@ -47,4 +47,4 @@ async function generatePNGs() {
   }
 }
 
-generatePNGs().catch(console.error);
+generateAll().catch(console.error);
