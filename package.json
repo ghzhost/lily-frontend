@@ -13,7 +13,7 @@
     "build": "next build",
     "start": "next start",
     "clean": "rimraf .next coverage tsconfig.tsbuildinfo",
-    "format": "prettier --write .",
+    "format": "prettier --write . --ignore-unknown",
     "lint": "eslint .",
     "format:check": "prettier --check .",
     "typecheck": "next typegen && tsc --noEmit",
