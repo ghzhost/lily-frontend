@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 import { getSectionRoutes } from '@/config/routes';
+import { checkA11y } from '@/test/a11y';
 
 import { SectionLayout } from './section-layout';
 
