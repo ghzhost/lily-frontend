@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { getSectionRoutes } from '@/config/routes';
 import { checkA11y } from '@/test/a11y';
 
+import { PageScaffold } from './page-scaffold';
 import { SectionLayout } from './section-layout';
 
 describe('SectionLayout', () => {
@@ -47,16 +48,21 @@ describe('SectionLayout', () => {
     expect(screen.getByText('/app/agents/[id]')).toBeInTheDocument();
   });
 
-  it("passes automated accessibility audit with zero axe violations", async () => {
-    const { container } = render(
-      <SectionLayout
-        title="Public marketing"
-        description="Public-facing route group."
-        routes={getSectionRoutes("marketing")}
-      >
-        <div>Section content</div>
-      </SectionLayout>,
-    );
+  it.each([
+    ['marketing', 'landing'],
+    ['dashboard', 'agents'],
+  ] as const)(
+    'renders one main landmark with no axe violations for %s scaffold pages',
+    async (section, routeKey) => {
+      const { container } = render(
+        <SectionLayout
+          title={section === 'marketing' ? 'Public marketing' : 'Dashboard'}
+          description="Representative scaffold layout."
+          routes={getSectionRoutes(section)}
+        >
+          <PageScaffold route={getRouteScaffold(routeKey)} />
+        </SectionLayout>,
+      );
 
     await checkA11y(container);
   });
