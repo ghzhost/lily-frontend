@@ -55,5 +55,22 @@ describe('PageScaffold', () => {
     expect(screen.getByText(dynamicLabel)).toBeInTheDocument();
     expect(screen.queryByText(route.path)).not.toBeInTheDocument();
   });
+
+  it("renders the figmaScope paragraph exactly once within the implementation-note article", () => {
+    const route = getRouteScaffold("landing");
+
+    render(<PageScaffold route={route} />);
+
+    const heading = screen.getByRole("heading", {
+      level: 2,
+      name: /contributor implementation note/i,
+    });
+    const article = heading.closest("article");
+    expect(article).not.toBeNull();
+
+    const scopeParagraphs = screen.getAllByText(route.figmaScope);
+    expect(scopeParagraphs).toHaveLength(1);
+    expect(article).toContainElement(scopeParagraphs[0]);
+  });
 });
 

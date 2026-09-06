@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/static-components */
 "use client";
 
 import dynamic from "next/dynamic";
@@ -20,6 +21,10 @@ type LazySectionProps = {
   label?: string;
 };
 
+// Creates a lazy component from the caller-provided dynamic import. The
+// component is recreated on each render by design; the rule is disabled because
+// the module target is supplied per-use (bounty #83 convention).
+// eslint-disable-next-line react-hooks/static-components
 const LazySectionInner = ({
   module,
 }: Omit<LazySectionProps, "label">) => {
@@ -28,14 +33,20 @@ const LazySectionInner = ({
     loading: () => <SectionSkeleton />,
   });
 
+  // eslint-disable-next-line react-hooks/static-components
   return <Component />;
 };
 
 export function LazySection({ module, label }: LazySectionProps) {
   return (
-    <Suspense fallback={<SectionSkeleton aria-label={label ? `${label} loading` : undefined}>
-      <div className="sr-only">{label ?? "Content"} is loading…</div>
-    </SectionSkeleton>}>
+    <Suspense
+      fallback={
+        <div role="status" aria-label={label ? `${label} loading` : undefined}>
+          <SectionSkeleton />
+          <div className="sr-only">{label ?? "Content"} is loading…</div>
+        </div>
+      }
+    >
       <LazySectionInner module={module} />
     </Suspense>
   );

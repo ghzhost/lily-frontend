@@ -10,7 +10,8 @@ describe("copyText", () => {
     });
     // jsdom does not implement execCommand; stub it for fallback tests
     if (typeof document.execCommand !== "function") {
-      (document as any).execCommand = vi.fn().mockReturnValue(true);
+      (document as Document & { execCommand: (cmd: string) => boolean }).execCommand =
+        vi.fn().mockReturnValue(true);
     }
   });
 

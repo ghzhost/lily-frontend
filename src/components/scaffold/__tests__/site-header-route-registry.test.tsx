@@ -24,7 +24,7 @@ describe("SiteHeader Route Registry Sync", () => {
     render(<SiteHeader />);
     
     const links = screen.getAllByRole("link");
-    const registeredPaths = new Set(routeScaffolds.map((r) => r.path));
+    const registeredPaths = new Set<string>(routeScaffolds.map((r) => r.path));
     registeredPaths.add("/");
     
     for (const link of links) {

@@ -2,7 +2,7 @@ import { getRouteScaffold, routeScaffolds, staticSitePages } from './routes';
 
 describe('route scaffolds', () => {
   it('covers the planned contributor-facing route map', () => {
-    expect(routeScaffolds).toHaveLength(24);
+    expect(routeScaffolds).toHaveLength(25);
     expect(getRouteScaffold('landing').path).toBe('/');
     expect(getRouteScaffold('agent-detail').path).toBe('/app/agents/[id]');
   });

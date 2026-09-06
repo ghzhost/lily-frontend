@@ -1,31 +1,31 @@
- import type { Viewport } from "next";
- import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
+import type { Viewport } from "next";
+import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 
-import { createOrganizationJsonLd, createSiteMetadata } from "@/config/site";
+import { createOrganizationJsonLd, serializeJsonLd } from "@/config/json-ld";
+import { createSiteMetadata } from "@/config/site";
+import { rootViewport } from "@/config/viewport";
 
-import './globals.css';
+import { rootViewport } from "@/config/viewport";
+
+import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
-  variable: '--font-space-grotesk',
-  subsets: ['latin'],
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const ibmPlexMono = IBM_Plex_Mono({
-  variable: '--font-ibm-plex-mono',
-  subsets: ['latin'],
-  weight: ['400', '500'],
+  variable: "--font-ibm-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
 });
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  themeColor: "#f7f7f5",
-  colorScheme: "light",
-};
+export const viewport: Viewport = rootViewport;
 
 export const metadata = createSiteMetadata();
-
-const jsonLd = createOrganizationJsonLd();
 
 export default function RootLayout({
   children,
@@ -39,12 +39,6 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} h-full`}
     >
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
       <body className="min-h-full bg-[var(--color-surface)] text-[var(--color-ink)]">
         <script
           dangerouslySetInnerHTML={{ __html: organizationJsonLd }}
@@ -52,7 +46,6 @@ export default function RootLayout({
           type="application/ld+json"
         />
         {children}
-        <SiteFooter />
       </body>
     </html>
   );

@@ -1,3 +1,4 @@
+import type { Route } from "next";
  import Link from "next/link";
 
  import { siteConfig } from "@/config/site";
@@ -35,7 +36,7 @@
                {legalLinks.map((link) => (
                  <li key={link.href}>
                    <Link
-                     href={link.href}
+                     href={link.href as Route}
                      className="text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)]"
                    >
                      {link.label}
@@ -51,7 +52,7 @@
                {supportLinks.map((link) => (
                  <li key={link.href}>
                    <Link
-                     href={link.href}
+                     href={link.href as Route}
                      className="text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)]"
                    >
                      {link.label}

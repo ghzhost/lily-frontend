@@ -51,7 +51,7 @@ export function AccordionItem({ title, children, defaultOpen = false }: Accordio
   );
 
   return (
-    <div className="border-b border-[var(--color-border)]">
+    <div className="border-b border-[var(--color-line)]">
       <h3>
         <button
           id={headerId}
@@ -60,7 +60,7 @@ export function AccordionItem({ title, children, defaultOpen = false }: Accordio
           aria-controls={panelId}
           onClick={toggle}
           onKeyDown={handleKeyDown}
-          className="flex w-full items-center justify-between py-4 text-left font-medium text-[var(--color-foreground)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2"
+          className="flex w-full items-center justify-between py-4 text-left font-medium text-[var(--color-ink)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2"
         >
           {title}
           <span
@@ -84,7 +84,7 @@ export function AccordionItem({ title, children, defaultOpen = false }: Accordio
         }}
         className="transition-[height] duration-300 ease-in-out motion-reduce:transition-none"
       >
-        <div className="pb-4 text-[var(--color-muted-foreground)]">
+        <div className="pb-4 text-[var(--color-muted)]">
           {children}
         </div>
       </div>
@@ -99,7 +99,7 @@ export interface AccordionProps {
 
 export function Accordion({ children, className = "" }: AccordionProps) {
   return (
-    <div className={`divide-y divide-[var(--color-border)] ${className}`}>
+    <div className={`divide-y divide-[var(--color-line)] ${className}`}>
       {children}
     </div>
   );

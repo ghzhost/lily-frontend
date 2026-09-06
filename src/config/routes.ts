@@ -34,20 +34,6 @@ export const sectionDefinitions: readonly SectionDefinition[] = [
 
 export const routeScaffolds = [
   {
-    id: "contribute",
-    title: "Contribute",
-    path: "/contribute",
-    section: "marketing",
-    purpose: "Onboard new contributors with setup instructions, workflow guidance, and validation steps.",
-    figmaScope: "Implement contributor onboarding content from CONTRIBUTING.md until Figma defines a dedicated design.",
-    implementationAreas: [
-      "Local setup and dependency installation steps",
-      "Issue selection and branching workflow",
-      "Validation checklist and PR expectations",
-    ],
-    includeInSitemap: true,
-  },
-  {
     id: "landing",
     title: "Landing Page",
     path: "/",
@@ -63,6 +49,20 @@ export const routeScaffolds = [
     ],
     includeInSitemap: true,
     updatedAt: "2026-08-25",
+  },
+  {
+    id: "contribute",
+    title: "Contribute",
+    path: "/contribute",
+    section: "marketing",
+    purpose: "Onboard new contributors with setup instructions, workflow guidance, and validation steps.",
+    figmaScope: "Implement contributor onboarding content from CONTRIBUTING.md until Figma defines a dedicated design.",
+    implementationAreas: [
+      "Local setup and dependency installation steps",
+      "Issue selection and branching workflow",
+      "Validation checklist and PR expectations",
+    ],
+    includeInSitemap: true,
   },
   {
     id: "about",
@@ -406,6 +406,7 @@ export const staticSitePages = routeScaffolds
   .map((route) => ({
     path: route.path as StaticSiteRoute,
     priority: route.path === '/' ? 1 : 0.8,
+    ...("updatedAt" in route && typeof route.updatedAt === "string" ? { updatedAt: route.updatedAt } : {}),
   })) as readonly SitePage[];
 
 export function getRouteScaffold(routeId: RouteScaffold['id']): RouteScaffold {

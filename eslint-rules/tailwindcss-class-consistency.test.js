@@ -2,10 +2,10 @@
  const rule = require("./tailwindcss-class-consistency");
 
  const tester = new RuleTester({
-   parserOptions: {
+   languageOptions: {
      ecmaVersion: 2020,
      sourceType: "module",
-     ecmaFeatures: { jsx: true },
+     parserOptions: { ecmaFeatures: { jsx: true } },
    },
  });
 

@@ -36,7 +36,7 @@ export async function register() {
  * Called when a request-level error occurs during rendering or data fetching.
  * Next.js 16+ invokes this hook automatically.
  */
-export function onRequestError(
+export async function onRequestError(
   err: Error & { digest?: string },
   request: {
     path: string;
@@ -49,7 +49,7 @@ export function onRequestError(
     routeType: string;
     renderSource: string;
   },
-): void {
+): Promise<void> {
   const logEntry = {
     timestamp: new Date().toISOString(),
     level: "error",

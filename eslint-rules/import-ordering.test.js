@@ -2,17 +2,16 @@
  const rule = require("./import-ordering");
 
  const tester = new RuleTester({
-   parserOptions: {
+   languageOptions: {
      ecmaVersion: 2020,
      sourceType: "module",
    },
  });
 
  tester.run("import-ordering", rule, {
-   valid: [
-     { code: 'import fs from "fs";\nimport path from "path";' },
-     { code: 'import express from "express";\nimport fs from "fs";' },
-     { code: 'import fs from "fs";\nimport express from "express";' },
+  valid: [
+    { code: 'import fs from "fs";\nimport path from "path";' },
+    { code: 'import fs from "fs";\nimport express from "express";' },
      { code: 'import express from "express";\nimport "@/lib/utils";' },
      { code: 'import express from "express";\nimport "./local";' },
      { code: 'import fs from "fs";\nimport express from "express";\nimport "@/lib";\nimport "./local";' },
