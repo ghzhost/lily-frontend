@@ -33,6 +33,7 @@ const LazySectionInner = ({
     loading: () => <SectionSkeleton />,
   });
 
+  // eslint-disable-next-line react-hooks/static-components
   return <Component />;
 };
 
