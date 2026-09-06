@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import { routes, siteConfig } from "@/config/site";
 import { routeScaffolds } from "@/config/routes";
@@ -43,5 +43,31 @@ describe("SiteHeader", () => {
       expect(href).toBeTruthy();
       expect(registeredPaths.has(href!)).toBe(true);
     }
+  });
+
+  it("renders one mobile menu and closes it on Escape", () => {
+    render(<SiteHeader />);
+
+    const menuButton = screen.getByRole("button", { name: /open menu/i });
+    expect(menuButton).toHaveAttribute("aria-expanded", "false");
+    expect(
+      screen.queryByRole("navigation", { name: "Mobile" }),
+    ).not.toBeInTheDocument();
+
+    fireEvent.click(menuButton);
+
+    expect(menuButton).toHaveAttribute("aria-expanded", "true");
+    expect(document.querySelectorAll("#mobile-nav-menu")).toHaveLength(1);
+    expect(
+      screen.getByRole("navigation", { name: "Mobile" }),
+    ).toBeInTheDocument();
+
+    fireEvent.keyDown(document, { key: "Escape" });
+
+    expect(menuButton).toHaveAttribute("aria-expanded", "false");
+    expect(
+      screen.queryByRole("navigation", { name: "Mobile" }),
+    ).not.toBeInTheDocument();
+    expect(menuButton).toHaveFocus();
   });
 });
