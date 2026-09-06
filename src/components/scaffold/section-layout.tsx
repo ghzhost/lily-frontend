@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { SectionNav } from "@/components/scaffold/section-nav";
+import { SiteFooter } from "@/components/scaffold/site-footer";
 import { SiteHeader } from "@/components/scaffold/site-header";
 
 import type { RouteScaffold } from "@/types/site";
@@ -51,6 +52,7 @@ export function SectionLayout({
           {children}
         </main>
       </div>
+      <SiteFooter />
     </>
   );
 }
