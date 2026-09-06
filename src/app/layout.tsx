@@ -1,7 +1,6 @@
 import type { Viewport } from "next";
 import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 
-import { SiteFooter } from "@/components/site-footer";
 import { createOrganizationJsonLd, serializeJsonLd } from "@/config/json-ld";
 import { createSiteMetadata } from "@/config/site";
 import { rootViewport } from "@/config/viewport";
@@ -47,7 +46,6 @@ export default function RootLayout({
           type="application/ld+json"
         />
         {children}
-        <SiteFooter />
       </body>
     </html>
   );
