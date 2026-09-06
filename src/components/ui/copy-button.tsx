@@ -14,6 +14,9 @@ type CopyButtonProps = {
 
 type CopyState = "idle" | "copied" | "failed";
 
+/** How long the confirmation state stays visible before resetting (ms). */
+const RESET_DELAY_MS = 2000;
+
 export function CopyButton({
   text,
   label = "Copy",
