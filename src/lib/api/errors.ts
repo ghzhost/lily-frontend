@@ -10,18 +10,12 @@ export interface LilyApiErrorOptions {
   details?: unknown;
 }
 
-type LilyApiErrorConstructorArgs =
-  | [message: string, status: number, code: string, details?: unknown]
-  | [options: LilyApiErrorOptions];
-
 export class LilyApiError extends Error {
   public readonly status: number;
   public readonly code: string;
   public readonly details: unknown;
 
-  constructor(...args: LilyApiErrorConstructorArgs) {
-    const options = normalizeLilyApiErrorArgs(args);
-
+  constructor(options: LilyApiErrorOptions) {
     super(options.message);
 
     this.name = "LilyApiError";
@@ -29,17 +23,6 @@ export class LilyApiError extends Error {
     this.code = options.code;
     this.details = options.details;
   }
-}
-
-function normalizeLilyApiErrorArgs(
-  args: LilyApiErrorConstructorArgs,
-): LilyApiErrorOptions {
-  if (typeof args[0] === "object" && args[0] !== null && "message" in args[0]) {
-    return args[0];
-  }
-
-  const [message, status, code, details] = args;
-  return { message: message ?? "", status: status ?? 0, code: code ?? "", details };
 }
 
 export function isLilyApiError(error: unknown): error is LilyApiError {
@@ -69,5 +52,10 @@ export async function handleApiResponse(response: Response): Promise<void> {
     // Non-JSON error response; use defaults from status text
   }
 
-  throw new LilyApiError(message, response.status, code, details);
+  throw new LilyApiError({
+    status: response.status,
+    code,
+    message,
+    details,
+  });
 }
