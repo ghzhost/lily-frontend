@@ -75,14 +75,5 @@ export function getAbsoluteUrl(path: StaticSiteRoute): string {
   return new URL(path, siteConfig.url).toString();
 }
 
-export function createOrganizationJsonLd(): Record<string, unknown> {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: siteConfig.name,
-    url: siteConfig.url,
-    description: siteConfig.description,
-    keywords: siteConfig.keywords.join(", "),
-  };
-}
+export { createOrganizationJsonLd } from "./json-ld";
 
