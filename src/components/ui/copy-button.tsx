@@ -24,9 +24,10 @@ export function CopyButton({
   const [copyState, setCopyState] = useState<CopyState>("idle");
 
   async function handleCopy() {
-    const result = await copyText(text);
+    const ok = await copyText(text);
 
-    setCopyState(result.ok ? "copied" : "failed");
+    setCopyState(ok ? "copied" : "failed");
+    window.setTimeout(() => setCopyState("idle"), 2000);
   }
 
   const buttonLabel =
