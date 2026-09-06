@@ -6,26 +6,32 @@
  import type { RouteScaffold } from "../../types/site";
 
  const mockRoute: RouteScaffold = {
-   section: "Marketing",
-   title: "Long Title That Should Wrap At Two Hundred Percent Zoom Without Overflowing The Viewport",
-   purpose: "A very long purpose description that ensures text reflows properly when the browser zoom level is increased to two hundred percent for accessibility compliance testing purposes.",
-   path: "/marketing/very-long-path-segment-that-might-overflow-if-not-handled-correctly-with-break-all",
-   figmaScope: "Design scope details that also need to wrap gracefully at high zoom levels to prevent horizontal scrolling issues in the layout container.",
-   implementationAreas: [
-     "Responsive typography scaling",
-     "Flexible grid layouts with minmax",
-     "Word breaking for long unbroken strings",
-   ],
- };
+  id: "test-zoom",
+  section: "marketing",
+  title: "Long Title That Should Wrap At Two Hundred Percent Zoom Without Overflowing The Viewport",
+  purpose: "A very long purpose description that ensures text reflows properly when the browser zoom level is increased to two hundred percent for accessibility compliance testing purposes.",
+  path: "/about",
+  figmaScope: "Design scope details that also need to wrap gracefully at high zoom levels to prevent horizontal scrolling issues in the layout container.",
+  implementationAreas: [
+    "Responsive typography scaling",
+    "Flexible grid layouts with minmax",
+    "Word breaking for long unbroken strings",
+  ],
+};
 
  describe("PageScaffold at 200% zoom", () => {
    it("renders without horizontal overflow indicators", () => {
-     render(<PageScaffold route={mockRoute} />);
-     const main = screen.getByRole("main");
-     expect(main).toBeInTheDocument();
+     const { container } = render(
+       <PageScaffold
+         route={mockRoute}
+         dynamicLabel="/marketing/very-long-path-segment-that-might-overflow-if-not-handled-correctly-with-break-all"
+       />
+     );
+     const section = container.querySelector("section.surface") ?? container.firstElementChild;
+     expect(section).toBeInTheDocument();
      // Verify break-words and break-all classes are applied to prevent overflow
-     expect(main.innerHTML).toContain("break-words");
-     expect(main.innerHTML).toContain("break-all");
+     expect(section?.innerHTML).toContain("break-words");
+     expect(section?.innerHTML).toContain("break-all");
    });
 
    it("uses fluid typography via clamp for headings", () => {

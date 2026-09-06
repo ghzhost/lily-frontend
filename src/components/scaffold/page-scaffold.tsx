@@ -12,18 +12,18 @@ export function PageScaffold({
   statusMessage,
 }: PageScaffoldProps) {
   return (
-    <main className="surface rounded-[1.75rem] p-8 sm:p-10">
+    <section className="surface rounded-[1.75rem] p-8 sm:p-10">
       <p className="eyebrow text-(--color-accent)">{route.section}</p>
       <div className="mt-4 flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-semibold tracking-tight">
+          <h1 className="text-[clamp(1.75rem,4vw,2.25rem)] text-4xl font-semibold tracking-tight break-words">
             {route.title}
           </h1>
-          <p className="mt-4 max-w-3xl text-lg leading-8 text-(--color-muted)">
+          <p className="mt-4 max-w-3xl text-lg leading-8 text-(--color-muted) break-words">
             {route.purpose}
           </p>
         </div>
-        <div className="rounded-2xl border border-(--color-line) bg-(--color-panel-muted) px-4 py-3 font-mono text-sm text-(--color-muted)">
+        <div className="rounded-2xl border border-(--color-line) bg-(--color-panel-muted) px-4 py-3 font-mono text-sm text-(--color-muted) break-all">
           {dynamicLabel ?? route.path}
         </div>
       </div>
@@ -40,7 +40,7 @@ export function PageScaffold({
       ) : null}
 
       <section className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-        <article className="rounded-3xl border border-(--color-line) bg-(--color-panel-muted) p-6">
+        <article className="min-w-0 rounded-3xl border border-(--color-line) bg-(--color-panel-muted) p-6">
           <h2 className="text-xl font-semibold">
             Contributor implementation note
           </h2>
@@ -54,7 +54,7 @@ export function PageScaffold({
           </p>
         </article>
 
-        <article className="rounded-3xl border border-(--color-line) bg-(--color-panel-muted) p-6">
+        <article className="min-w-0 rounded-3xl border border-(--color-line) bg-(--color-panel-muted) p-6">
           <h2 className="text-xl font-semibold">Natural issue slices</h2>
           <ul className="mt-4 grid gap-3">
             {route.implementationAreas.map((area) => (
@@ -68,6 +68,6 @@ export function PageScaffold({
           </ul>
         </article>
       </section>
-    </main>
+    </section>
   );
 }
