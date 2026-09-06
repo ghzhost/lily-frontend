@@ -61,4 +61,8 @@ describe("RootLayout viewport", () => {
   it("renders a theme-color meta tag equal to SURFACE_THEME_COLOR", () => {
     expect(viewport.themeColor).toBe(SURFACE_THEME_COLOR);
   });
+
+  it("exports rootViewport matching config", () => {
+    expect(viewport).toEqual(rootViewport);
+  });
 });
