@@ -1,28 +1,18 @@
-import withSerwistInit from "@serwist/next";
-
-const withSerwist = withSerwistInit({
-  swSrc: "app/sw.ts",
-  swDest: "public/sw.js",
-  disable: process.env.NODE_ENV === "development",
-});
-
 import type { NextConfig } from "next";
-import withSerwistInit from '@serwist/next';
+import withSerwistInit from "@serwist/next";
+import type { NextConfig } from "next";
 
 const withSerwist = withSerwistInit({
-  swSrc: 'app/sw.ts',
-  swDest: 'public/sw.js',
-  disable: process.env.NODE_ENV !== 'production',
+  swSrc: "src/app/sw.ts",
+  swDest: "public/sw.js",
+  disable: process.env.NODE_ENV !== "production",
 });
 
 const securityHeaders = [
   {
-    key: "X-Content-Type-Options",
-    value: "nosniff",
-  },
-  {
-    key: "X-Frame-Options",
-    value: "DENY",
+    key: "Content-Security-Policy",
+    value:
+      "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'",
   },
   {
     key: "Referrer-Policy",
@@ -33,29 +23,12 @@ const securityHeaders = [
     value: "camera=(), microphone=(), geolocation=()",
   },
   {
-    key: "Content-Security-Policy",
-    value:
-      "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
-  },
-];
-
-const securityHeaders = [
-  {
     key: "X-Content-Type-Options",
     value: "nosniff",
   },
   {
     key: "X-Frame-Options",
     value: "DENY",
-  },
-  {
-    key: "Referrer-Policy",
-    value: "strict-origin-when-cross-origin",
-  },
-  {
-    key: "Content-Security-Policy",
-    value:
-      "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
   },
 ];
 
@@ -72,33 +45,28 @@ export const legacyRedirects = [
   },
 ] as const;
 
-const securityHeaders = [
-  {
-    key: "Referrer-Policy",
-    value: "strict-origin-when-cross-origin",
-  },
-  {
-    key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
-  },
-  {
-    key: "X-Content-Type-Options",
-    value: "nosniff",
-  },
-  {
-    key: "X-Frame-Options",
-    value: "DENY",
-  },
-];
-
 const nextConfig: NextConfig = {
   output: "standalone",
   typedRoutes: true,
+  turbopack: {},
+  poweredByHeader: false,
   images: {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "opengraph.example.com",
+      },
+      {
+        protocol: "https",
         hostname: "**.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.lilyprotocol.dev",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.lilyprotocol.dev",
       },
       {
         protocol: "https",
@@ -106,9 +74,24 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "cdn.lillyprotocol.dev",
+        hostname: "cdn.lilyprotocol.dev",
+      },
+      {
+        protocol: "https",
+        hostname: "opengraph.example.com",
       },
     ],
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: securityHeaders,
+      },
+    ];
+  },
+  async redirects() {
+    return legacyRedirects as unknown as { source: string; destination: string; permanent: boolean }[];
   },
 };
 

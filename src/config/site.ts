@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { staticSitePages } from '@/config/routes';
-
+import { SURFACE_THEME_COLOR } from '@/config/viewport';
 import type { SitePage, StaticSiteRoute } from '@/types/site';
 
 export const routes = {
@@ -20,6 +20,8 @@ export const siteConfig = {
     'Contributor-ready frontend foundation for Lily Protocol, designed for issue-driven UI and product development.',
   tagline: 'A stable Next.js frontend foundation for issue-driven open source contribution.',
   url: 'https://lilyprotocol.dev',
+  manifestPath: '/manifest.webmanifest',
+  themeColor: SURFACE_THEME_COLOR,
   keywords: ['Stellar', 'frontend', 'Next.js', 'TypeScript', 'contributors', 'open source', 'web3'],
   pages: staticSitePages as readonly SitePage[],
 } as const;
@@ -35,9 +37,6 @@ export function createSiteMetadata(
 
   return {
     metadataBase: new URL(siteConfig.url),
-    alternates: {
-      canonical: siteConfig.url,
-    },
     title: {
       default: siteConfig.name,
       template: `%s | ${siteConfig.name}`,
@@ -76,14 +75,5 @@ export function getAbsoluteUrl(path: StaticSiteRoute): string {
   return new URL(path, siteConfig.url).toString();
 }
 
-export function createOrganizationJsonLd(): Record<string, unknown> {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: siteConfig.name,
-    url: siteConfig.url,
-    description: siteConfig.description,
-    keywords: siteConfig.keywords.join(", "),
-  };
-}
+export { createOrganizationJsonLd } from "./json-ld";
 

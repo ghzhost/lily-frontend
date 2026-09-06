@@ -97,11 +97,14 @@ npm run test:e2e
 npm run build
 npm run check
 npm run format
+npm run icons
 npm run clean
+npm run icons
 ```
 
 `npm run check` mirrors CI and is the fastest way to validate a contribution before opening a PR.
 `npm run format` applies Prettier to supported repository files. `npm run clean` removes the generated `.next`, `coverage`, and `tsconfig.tsbuildinfo` artifacts.
+`npm run icons` regenerates the canonical public icon assets using brand design tokens from `src/app/globals.css`.
 
 ## Motion tokens
 

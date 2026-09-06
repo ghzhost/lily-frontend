@@ -1,14 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Lily Protocol maskable app icon">
-  <rect width="512" height="512" fill="#f7f7f5" />
-  <circle cx="256" cy="256" r="182" fill="#ffffff" stroke="#d1d5db" stroke-width="18" />
-  <path
-    d="M256 112c53 50 96 105 96 166 0 59-43 106-96 106s-96-47-96-106c0-61 43-116 96-166Z"
-    fill="#0f766e"
-  />
-  <path
-    d="M256 150c-34 41-59 84-59 128 0 38 26 66 59 66s59-28 59-66c0-44-25-87-59-128Z"
-    fill="#f7f7f5"
-    opacity=".94"
-  />
-  <path d="M256 235v158" stroke="#0f766e" stroke-width="24" stroke-linecap="round" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#0f172a"/>
+  <path d="M20 18h8v20h12v8H20V18z" fill="#f7f7f5"/>
+  <circle cx="44" cy="22" r="4" fill="#0f766e"/>
 </svg>

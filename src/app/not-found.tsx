@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import Link from "next/link";
 
 import { routes, siteConfig } from "@/config/site";
@@ -23,13 +23,13 @@ export default function NotFound() {
         <div className="mt-8 flex flex-wrap gap-3 text-sm font-semibold">
           <Link
             className="rounded-full bg-[var(--color-ink)] px-5 py-3 text-white hover:opacity-90"
-            href={routes.home}
+            href={routes.home as unknown as Route}
           >
             Return home
           </Link>
           <Link
             className="rounded-full border border-[var(--color-line)] px-5 py-3 hover:border-[var(--color-accent)]"
-            href={routes.docs}
+            href={routes.docs as unknown as Route}
           >
             View docs
           </Link>

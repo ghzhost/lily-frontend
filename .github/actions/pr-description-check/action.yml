@@ -27,6 +27,11 @@ runs:
         if [ -z "$(echo "$PR_BODY" | tr -d '[:space:]')" ]; then
           errors+=("PR description is empty")
         fi
+
+        # Check for Summary section
+        if ! echo "$PR_BODY" | grep -qiE '##[[:space:]]+Summary'; then
+          errors+=("PR description lacks a '## Summary' section")
+        fi
         
         # Check for related issue reference (Closes #, Fixes #, Resolves #)
         if ! echo "$PR_BODY" | grep -qiE '(closes|fixes|resolves)\s+#[0-9]+'; then

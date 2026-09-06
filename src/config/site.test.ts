@@ -1,5 +1,6 @@
 import {
   createOrganizationJsonLd,
+  createPageMetadata,
   createSiteMetadata,
   getAbsoluteUrl,
   routes,

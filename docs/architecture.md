@@ -77,3 +77,19 @@ ownership and public indexing stay aligned.
 - Keep route `page.tsx` files focused on page composition. Shared header,
   sidebar, and section navigation behavior belongs in the scaffold components.
 
+
+## Internationalization (i18n)
+
+> **Status: Deferred.** The `next-intl` dependency and associated scaffolding
+> (`src/i18n/`, `src/app/[locale]/`, `messages/`) were removed because only a
+> single locale (`en`) was defined and the wiring was incomplete (root layout
+> never mounted `[locale]`, causing dead code paths and TS2307 errors).
+>
+> When i18n becomes a real requirement:
+> 1. Re-add `next-intl` to `package.json`
+> 2. Restore `src/i18n/routing.ts` and `src/i18n/request.ts`
+> 3. Create `src/app/[locale]/layout.tsx` with `NextIntlClientProvider`
+> 4. Update `src/app/layout.tsx` to derive `<html lang>` from the locale
+> 5. Add `src/middleware.ts` integration with `createMiddleware` from
+>    `next-intl/routing`
+> 6. Populate `messages/` with translation files for each supported locale

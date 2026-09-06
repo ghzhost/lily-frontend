@@ -58,4 +58,21 @@ describe("AccordionItem", () => {
     const button = screen.getByRole("button", { name: /open default/i });
     expect(button).toHaveAttribute("aria-expanded", "true");
   });
+
+  it("does not reference undefined CSS variables", () => {
+    const { container } = render(
+      <Accordion>
+        <AccordionItem title="CSS Token Test" defaultOpen>
+          Content
+        </AccordionItem>
+      </Accordion>
+    );
+
+    const html = container.innerHTML;
+    expect(html).not.toContain("--color-border");
+    expect(html).not.toContain("--color-muted-foreground");
+    expect(html).toContain("--color-line");
+    expect(html).toContain("--color-muted");
+    expect(html).toContain("--color-ink");
+  });
 });
