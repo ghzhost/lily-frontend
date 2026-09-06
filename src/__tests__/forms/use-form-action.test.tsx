@@ -72,6 +72,7 @@
      });
    });
 
+
    it("captures thrown errors as form-level failures", async () => {
      const action = vi.fn(async () => {
        throw new Error("Network down");
@@ -84,4 +85,36 @@
        expect(screen.getByTestId("form-error")).toHaveTextContent("Network down");
      });
    });
+
+   it("resets state without re-executing action", async () => {
+    function ResetDemo({ action }: DemoProps) {
+      const { state, submit, reset } = useFormAction<{ greeting: string }>(action);
+      return (
+        <form action={submit}>
+          <button type="submit">Submit</button>
+          <button type="button" onClick={reset}>Reset</button>
+          {state.formError && <p data-testid="form-error">{state.formError}</p>}
+        </form>
+      );
+    }
+
+    const action = vi.fn(async () => {
+      throw new Error("Failure");
+    });
+
+    render(<ResetDemo action={action} />);
+    await userEvent.click(screen.getByRole("button", { name: "Submit" }));
+
+    await waitFor(() => {
+      expect(screen.getByTestId("form-error")).toHaveTextContent("Failure");
+    });
+    expect(action).toHaveBeenCalledTimes(1);
+
+    await userEvent.click(screen.getByRole("button", { name: "Reset" }));
+
+    await waitFor(() => {
+      expect(screen.queryByTestId("form-error")).toBeNull();
+    });
+    expect(action).toHaveBeenCalledTimes(1);
+  });
  });
