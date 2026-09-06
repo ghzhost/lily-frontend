@@ -88,6 +88,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Playwright browser
+        if: matrix.check.name == 'E2E'
+        run: npx playwright install --with-deps chromium
+
       - name: Run ${{ matrix.check.name }}
         run: ${{ matrix.check.command }}
 

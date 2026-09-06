@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { defineConfig } from 'vitest/config';
+import { configDefaults, defineConfig } from 'vitest/config';
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
@@ -11,6 +11,7 @@ export default defineConfig({
     }
   },
   test: {
+    exclude: [...configDefaults.exclude, '**/e2e/**'],
     environment: 'jsdom',
     globals: true,
     css: true,
