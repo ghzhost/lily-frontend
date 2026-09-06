@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { staticSitePages } from '@/config/routes';
-
+import { SURFACE_THEME_COLOR } from '@/config/viewport';
 import type { SitePage, StaticSiteRoute } from '@/types/site';
 
 export const routes = {
@@ -21,7 +21,7 @@ export const siteConfig = {
   tagline: 'A stable Next.js frontend foundation for issue-driven open source contribution.',
   url: 'https://lilyprotocol.dev',
   manifestPath: '/manifest.webmanifest',
-  themeColor: '#f7f7f5',
+  themeColor: SURFACE_THEME_COLOR,
   keywords: ['Stellar', 'frontend', 'Next.js', 'TypeScript', 'contributors', 'open source', 'web3'],
   pages: staticSitePages as readonly SitePage[],
 } as const;
