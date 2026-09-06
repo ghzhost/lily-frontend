@@ -33,5 +33,11 @@ describe("Active Route Indication (aria-current)", () => {
       expect(statusLink).not.toHaveAttribute("aria-current");
     });
 
+    it("never applies aria-current to dynamic placeholder div", () => {
+      const routes = getSectionRoutes("dashboard");
+      render(<SectionNav routes={routes} />);
+      const placeholder = screen.getByText("/app/agents/[id]");
+      expect(placeholder.closest("[aria-current]")).toBeNull();
+    });
   });
 });

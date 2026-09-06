@@ -17,6 +17,7 @@ describe("Route group layout smoke tests", () => {
     const Layout = (await import("@/app/(marketing)/layout")).default;
     render(<Layout><div data-testid="child">Marketing Page</div></Layout>);
     
+    expect(screen.getByRole("banner")).toBeInTheDocument();
     expect(document.querySelector("aside")).toBeTruthy();
     expect(screen.getAllByRole("navigation").length).toBeGreaterThanOrEqual(1);
     expect(screen.getByTestId("child")).toBeInTheDocument();
@@ -26,6 +27,7 @@ describe("Route group layout smoke tests", () => {
     const Layout = (await import("@/app/(auth)/layout")).default;
     render(<Layout><div data-testid="child">Auth Page</div></Layout>);
     
+    expect(screen.getByRole("banner")).toBeInTheDocument();
     expect(document.querySelector("aside")).toBeTruthy();
     expect(screen.getAllByRole("navigation").length).toBeGreaterThanOrEqual(1);
     expect(screen.getByTestId("child")).toBeInTheDocument();
@@ -35,6 +37,7 @@ describe("Route group layout smoke tests", () => {
     const Layout = (await import("@/app/(support)/layout")).default;
     render(<Layout><div data-testid="child">Support Page</div></Layout>);
     
+    expect(screen.getByRole("banner")).toBeInTheDocument();
     expect(document.querySelector("aside")).toBeTruthy();
     expect(screen.getAllByRole("navigation").length).toBeGreaterThanOrEqual(1);
     expect(screen.getByTestId("child")).toBeInTheDocument();
@@ -44,6 +47,7 @@ describe("Route group layout smoke tests", () => {
     const Layout = (await import("@/app/app/layout")).default;
     render(<Layout><div data-testid="child">Dashboard Page</div></Layout>);
     
+    expect(screen.getByRole("banner")).toBeInTheDocument();
     expect(document.querySelector("aside")).toBeTruthy();
     expect(screen.getAllByRole("navigation").length).toBeGreaterThanOrEqual(1);
     expect(screen.getByTestId("child")).toBeInTheDocument();

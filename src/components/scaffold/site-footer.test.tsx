@@ -35,9 +35,11 @@ describe("SiteFooter", () => {
     }
   });
 
-  it("displays a copyright line", () => {
+  it("displays a copyright line with current year", () => {
     render(<SiteFooter legalRoutes={legalRoutes} supportRoutes={supportRoutes} />);
 
+    const year = new Date().getFullYear().toString();
+    expect(screen.getByText(new RegExp(year))).toBeInTheDocument();
     expect(screen.getByText(/all rights reserved/i)).toBeInTheDocument();
   });
 });
