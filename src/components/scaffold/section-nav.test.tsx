@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
+import type { RouteScaffold } from "@/types/site";
 import { SectionNav } from "./section-nav";
 
 import type { ComponentProps } from "react";
