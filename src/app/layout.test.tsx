@@ -52,3 +52,13 @@ describe("RootLayout configuration", () => {
     expect(container.querySelectorAll("footer")).toHaveLength(1);
   });
 });
+
+describe("RootLayout viewport", () => {
+  it("exports the shared rootViewport from the config module", () => {
+    expect(viewport).toBe(rootViewport);
+  });
+
+  it("renders a theme-color meta tag equal to SURFACE_THEME_COLOR", () => {
+    expect(viewport.themeColor).toBe(SURFACE_THEME_COLOR);
+  });
+});
