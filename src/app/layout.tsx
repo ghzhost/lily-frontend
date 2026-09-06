@@ -6,6 +6,8 @@ import { createOrganizationJsonLd, serializeJsonLd } from "@/config/json-ld";
 import { createSiteMetadata } from "@/config/site";
 import { rootViewport } from "@/config/viewport";
 
+import { rootViewport } from "@/config/viewport";
+
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({

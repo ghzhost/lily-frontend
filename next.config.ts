@@ -47,12 +47,21 @@ export const legacyRedirects = [
 const nextConfig: NextConfig = {
   output: "standalone",
   typedRoutes: true,
+  turbopack: {},
   poweredByHeader: false,
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "**.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.lilyprotocol.dev",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.lilyprotocol.dev",
       },
       {
         protocol: "https",
@@ -77,7 +86,7 @@ const nextConfig: NextConfig = {
     ];
   },
   async redirects() {
-    return legacyRedirects as { source: string; destination: string; permanent: boolean }[];
+    return legacyRedirects as unknown as { source: string; destination: string; permanent: boolean }[];
   },
 };
 

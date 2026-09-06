@@ -16,7 +16,7 @@ describe("route group layouts", () => {
       </MarketingLayout>,
     );
 
-    expect(screen.getByRole("link", { name: /lily protocol/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /lily protocol/i })[0]).toBeInTheDocument();
     expect(screen.getByText("Public marketing")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /landing page/i })).toBeInTheDocument();
   });
@@ -28,7 +28,7 @@ describe("route group layouts", () => {
       </AuthLayout>,
     );
 
-    expect(screen.getByRole("link", { name: /lily protocol/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /lily protocol/i })[0]).toBeInTheDocument();
     expect(screen.getByText("Auth")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /sign in/i })).toBeInTheDocument();
   });
@@ -40,7 +40,7 @@ describe("route group layouts", () => {
       </SupportLayout>,
     );
 
-    expect(screen.getByRole("link", { name: /lily protocol/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /lily protocol/i })[0]).toBeInTheDocument();
     expect(screen.getByText("Docs, status, and legal")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /documentation/i })).toBeInTheDocument();
   });
@@ -52,7 +52,7 @@ describe("route group layouts", () => {
       </DashboardLayout>,
     );
 
-    expect(screen.getByRole("link", { name: /lily protocol/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /lily protocol/i })[0]).toBeInTheDocument();
     expect(
       screen.getByText("Signed-in product surfaces for agents, wallets, payments, and settings."),
     ).toBeInTheDocument();

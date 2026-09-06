@@ -22,7 +22,7 @@ describe("Skeleton", () => {
 
   it("respects motion-reduce via class", () => {
     const { container } = render(<Skeleton />);
-    expect(container.firstChild?.className).toContain("motion-reduce:animate-none");
+    expect(container.firstChild).toHaveClass("motion-reduce:animate-none");
   });
 });
 

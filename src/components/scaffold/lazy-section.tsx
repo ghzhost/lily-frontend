@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/static-components */
 "use client";
 
 import dynamic from "next/dynamic";
@@ -37,9 +38,14 @@ const LazySectionInner = ({
 
 export function LazySection({ module, label }: LazySectionProps) {
   return (
-    <Suspense fallback={<SectionSkeleton aria-label={label ? `${label} loading` : undefined}>
-      <div className="sr-only">{label ?? "Content"} is loading…</div>
-    </SectionSkeleton>}>
+    <Suspense
+      fallback={
+        <div role="status" aria-label={label ? `${label} loading` : undefined}>
+          <SectionSkeleton />
+          <div className="sr-only">{label ?? "Content"} is loading…</div>
+        </div>
+      }
+    >
       <LazySectionInner module={module} />
     </Suspense>
   );

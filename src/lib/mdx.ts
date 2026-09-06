@@ -19,12 +19,12 @@
      const { data, content } = matter(raw);
 
      return {
-       slug,
-       title: String(data.title ?? slug),
-       date: data.date ? String(data.date) : undefined,
-       excerpt: data.excerpt ? String(data.excerpt) : undefined,
-       content,
-     };
+      slug,
+      title: String(data.title ?? slug),
+      ...(data.date ? { date: String(data.date) } : {}),
+      ...(data.excerpt ? { excerpt: String(data.excerpt) } : {}),
+      content,
+    };
    } catch {
      return null;
    }
