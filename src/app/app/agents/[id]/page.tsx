@@ -21,7 +21,10 @@ export default async function AgentDetailPage({ params }: { params: Promise<{ id
   }
 
   return (
-    <PageScaffold route={getRouteScaffold('agent-detail')} dynamicLabel={`/app/agents/${id}`} />
+    <PageScaffold
+      route={getRouteScaffold("agent-detail")}
+      dynamicLabel={`/app/agents/${id}`}
+    />
   );
 }
 
