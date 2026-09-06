@@ -185,6 +185,50 @@ a {
   line-height: var(--leading-tight);
 }
 
+/* .type-* aliases over the same scale tokens, for semantic naming. */
+.type-display {
+  font-size: var(--text-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 700;
+}
+
+.type-h1 {
+  font-size: var(--text-h1);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+  font-weight: 600;
+}
+
+.type-h2 {
+  font-size: var(--text-h2);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+  font-weight: 600;
+}
+
+.type-h3 {
+  font-size: var(--text-h3);
+  line-height: var(--leading-heading);
+  font-weight: 600;
+}
+
+.type-h4 {
+  font-size: var(--text-h4);
+  line-height: var(--leading-heading);
+  font-weight: 600;
+}
+
+.type-body {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+.type-caption {
+  font-size: var(--text-caption);
+  line-height: var(--leading-body);
+}
+
 /* Focus is the one state a keyboard user has. The scaffold styled :hover only,
    which leaves tab navigation invisible — so every interactive control gets a
    ring here rather than each component remembering to add one.

@@ -1,4 +1,10 @@
-import type { ReactNode } from "react";
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 
 export type TimelineItemProps = {
   readonly date: string;

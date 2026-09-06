@@ -1,8 +1,13 @@
 import { HttpResponse, http } from "msw";
+import { afterAll, afterEach, beforeAll, describe, it } from "vitest";
 
 import { server } from "./server";
 
 describe("MSW test server", () => {
+  beforeAll(() => server.listen({ onUnhandledRequest: "bypass" }));
+  afterEach(() => server.resetHandlers());
+  afterAll(() => server.close());
+
   it("mocks fetch responses with a test-scoped handler", async () => {
     server.use(
       http.get("https://api.lily.test/agents", () =>

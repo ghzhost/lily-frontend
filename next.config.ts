@@ -53,6 +53,10 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "opengraph.example.com",
+      },
+      {
+        protocol: "https",
         hostname: "**.githubusercontent.com",
       },
       {
@@ -69,7 +73,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "cdn.lillyprotocol.dev",
+        hostname: "cdn.lilyprotocol.dev",
       },
       {
         protocol: "https",
