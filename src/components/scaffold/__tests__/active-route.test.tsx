@@ -62,6 +62,14 @@ describe("Active route indication (Issue #119)", () => {
       expect(docsLink).toHaveAttribute("aria-current", "page");
     });
 
+    it("marks the agents registry nav link active when viewing an agent detail page", () => {
+      mockUsePathname.mockReturnValue("/app/agents/abc123");
+      render(<SectionNav routes={routes} />);
+      const agentsLink = screen.getByRole("link", { name: /agents registry/i });
+      expect(agentsLink).toHaveAttribute("aria-current", "page");
+      expect(agentsLink.className).toContain("border-[var(--color-accent)]");
+    });
+
     it("does not apply aria-current to non-matching routes", () => {
       mockUsePathname.mockReturnValue("/about");
       render(<SectionNav routes={routes} />);
