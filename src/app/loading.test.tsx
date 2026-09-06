@@ -5,6 +5,6 @@ import RootLoading from "./loading";
 describe("RootLoading", () => {
   it("renders loading indicator without crashing", () => {
     render(<RootLoading />);
-    expect(screen.getByText(/carregando/i)).toBeInTheDocument();
+    expect(screen.getByText(/loading/i)).toBeInTheDocument();
   });
 });
