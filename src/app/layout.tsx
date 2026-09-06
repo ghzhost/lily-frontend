@@ -4,6 +4,7 @@ import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { createOrganizationJsonLd, serializeJsonLd } from "@/config/json-ld";
 import { createSiteMetadata } from "@/config/site";
+import { rootViewport } from "@/config/viewport";
 
 import "./globals.css";
 
@@ -21,12 +22,7 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  themeColor: "#f7f7f5",
-  colorScheme: "light",
-};
+export const viewport: Viewport = rootViewport;
 
 export const metadata = createSiteMetadata();
 

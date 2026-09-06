@@ -19,7 +19,7 @@ vi.mock("next/font/google", () => ({
 import { render } from "@testing-library/react";
 import RootLayout from "./layout";
 
-describe("RootLayout font configuration", () => {
+describe("RootLayout configuration", () => {
   it("uses swap display for both fonts and preloads Space Grotesk", () => {
     expect(fontMocks.spaceGrotesk).toHaveBeenCalledWith(
       expect.objectContaining({ display: "swap", preload: true }),
